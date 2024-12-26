@@ -1,0 +1,34 @@
+<div *ngIf="isRecuperacionOpen" class="modal fade show" tabindex="-1" style="display: block;" aria-labelledby="recuperacionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="recuperacionModalLabel">Ingresar Nota de Recuperación</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombreEstudiante" class="form-label">Nombre Estudiante:</label>
+            <p>{{ estudiante?.nombres }} {{ estudiante?.apellidos }}</p>
+          </div>
+          <div class="mb-3">
+            <label for="notaRecuperacion" class="form-label">Nota de Recuperación:</label>
+            <input
+              type="number"
+              [(ngModel)]="notaRecuperacion"
+              name="notaRecuperacion"
+              class="form-control"
+              required
+              min="0"
+              max="10"
+            />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

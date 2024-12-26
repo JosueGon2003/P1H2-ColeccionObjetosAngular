@@ -1,0 +1,110 @@
+/* Fondo del modal (capa de overlay) */
+.modal.fade.show {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+}
+
+/* Estilo del contenido del modal */
+.modal-content {
+    max-width: 800px; /* Aumentar el ancho del modal */
+    margin: 0 auto;
+    background-color: transparent; /* Fondo transparente para el contenido */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+}
+
+/* Encabezado del modal */
+.modal-header {
+    background-color: rgba(0, 123, 255, 0.8); /* Fondo semi-transparente para el encabezado */
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 1rem;
+}
+
+/* Estilo del título del modal */
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Botón de cierre */
+button[type="button"].btn-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 20px 30px;
+    font-size: 1rem;
+    background-color: white; /* Fondo blanco para el cuerpo del modal */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Formulario */
+form {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 20px;
+}
+
+/* Ajustar el tamaño de los campos */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-size: 1rem;
+}
+
+/* Estilo de los botones */
+button[type="submit"], button[type="button"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Estilo para el botón de cerrar en el encabezado */
+button[type="button"].btn-close {
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+}
+
+/* Efecto al pasar el mouse sobre los botones */
+button[type="submit"]:hover, button[type="button"]:hover {
+    cursor: pointer;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 90%; /* Modal más pequeño en pantallas pequeñas */
+    }
+
+    /* Cambiar a una sola columna en pantallas pequeñas */
+    form {
+        grid-template-columns: 1fr;
+    }
+}

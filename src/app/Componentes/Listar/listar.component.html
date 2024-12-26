@@ -1,0 +1,98 @@
+<section class="container mt-5 d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-sm p-4 w-100" style="max-width: 1400px;"> <!-- Aumenté el max-width a 1400px -->
+    <h1 class="text-center mb-4">Gestión de Estudiantes</h1>
+
+    <button class="btn btn-primary mb-3" (click)="isOpen = true; selectedEstudiante = null">
+      <i class="bi bi-plus-circle"></i> Agregar Estudiante
+    </button>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Código</th>
+            <th>Cédula</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Sexo</th>
+            <th>Parcial 1</th>
+            <th>Parcial 2</th>
+            <th>CF</th>
+            <th>Nota Recuperación</th>
+            <th>Nota Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of estudiantes; let i = index">
+            <td>{{ estudiante.codigo }}</td>
+            <td>{{ estudiante.cedula }}</td>
+            <td>{{ estudiante.nombres }}</td>
+            <td>{{ estudiante.apellidos }}</td>
+            <td>{{ estudiante.sexo }}</td>
+            <td>{{ estudiante.parcial1 }}</td>
+            <td>{{ estudiante.parcial2 }}</td>
+            <td>{{ estudiante.calificacionFinal }}</td>
+            <td>{{ estudiante.examenRecuperacion ?? 'N/A' }}</td>
+            <td>{{ estudiante.notaDefinitiva ?? estudiante.calificacionFinal }}</td>
+            <td>
+              <span class="badge" [ngClass]="{
+                'bg-success': estudiante.estadoAprobatorio === 'Aprobado',
+                'bg-danger': estudiante.estadoAprobatorio === 'Reprobado',
+                'bg-warning': estudiante.estadoAprobatorio === 'Pendiente de Recuperación'
+              }">{{ estudiante.estadoAprobatorio }}</span>
+            </td>
+            <td>
+              <button class="btn btn-warning btn-sm" (click)="editEstudiante(estudiante)">
+                <i class="bi bi-pencil"></i> Editar
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteEstudiante(i)">
+                <i class="bi bi-trash"></i> Eliminar
+              </button>
+              <button *ngIf="estudiante.estadoAprobatorio === 'Pendiente de Recuperación'" class="btn btn-info btn-sm"
+                (click)="openRecuperacionModal(estudiante)">
+                <i class="bi bi-file-earmark-medical"></i> Recuperación
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Estadísticas</h5>
+            <p>Porcentaje Aprobados: {{ porcentajeAprobados | number: '1.2-2' }}%</p>
+            <p>Porcentaje Reprobados: {{ porcentajeReprobados | number: '1.2-2' }}%</p>
+            <p>Porcentaje Aprobados Hombres: {{ porcentajeAprobadosHombres | number: '1.2-2' }}%</p>
+            <p>Porcentaje Aprobados Mujeres: {{ porcentajeAprobadosMujeres | number: '1.2-2' }}%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Promedio General</h5>
+            <p>Promedio General del Curso: {{ promedioGeneral | number: '1.2-2' }}</p>
+            <p>Estudiante con Mayor Nota: 
+              {{ estudianteMayorNota 
+                ? estudianteMayorNota.nombres + ' ' + estudianteMayorNota.apellidos + ' con ' + (estudianteMayorNota.notaDefinitiva ?? estudianteMayorNota.calificacionFinal) + ''
+                : 'N/A' }}
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-agregar [isOpen]="isOpen" [selectedEstudiante]="selectedEstudiante" (close)="onCloseModal()"></app-agregar>
+
+    <app-recuperacion [isRecuperacionOpen]="isRecuperacionOpen" [selectedEstudiante]="selectedEstudiante"
+      (close)="onCloseRecuperacionModal()"></app-recuperacion>
+  </div>
+</section>

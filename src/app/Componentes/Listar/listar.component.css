@@ -1,0 +1,82 @@
+/* Centrando el contenedor principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Asegura que el contenido esté centrado en toda la pantalla */
+}
+
+/* Estilo de la tarjeta */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Establecer un ancho máximo mayor para el contenedor */
+.card {
+  max-width: 1400px; /* Aumento del tamaño máximo */
+}
+
+/* Mejorando la tabla */
+table th, table td {
+  padding: 15px; /* Aumentando el espacio de las celdas */
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Responsividad de la tabla */
+.table-responsive {
+  overflow-x: auto;
+  max-height: 500px; /* Limitar la altura y hacer scroll si es necesario */
+}
+
+/* Mejorando el estilo de los botones */
+button {
+  margin: 5px;
+}
+
+button i {
+  margin-right: 5px;
+}
+
+/* Modificar las celdas con bordes redondeados */
+table th, table td {
+  border-radius: 8px;
+}
+
+/* Efecto al pasar el mouse sobre las filas */
+table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Diseño de los elementos de estadísticas y promedio */
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  /* Ajustes para pantallas pequeñas */
+  table td, table th {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    margin-bottom: 15px;
+  }
+}

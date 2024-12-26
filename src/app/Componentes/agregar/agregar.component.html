@@ -1,0 +1,58 @@
+<div *ngIf="isOpen" class="modal fade show" tabindex="-1" style="display: block;" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ selectedEstudiante ? 'Editar' : 'Agregar' }} Estudiante</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="codigo" class="form-label">Código:</label>
+            <input type="number" [(ngModel)]="estudiante.codigo" name="codigo" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="cedula" class="form-label">Cédula:</label>
+            <input type="text" [(ngModel)]="estudiante.cedula" name="cedula" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="nombres" class="form-label">Nombres:</label>
+            <input type="text" [(ngModel)]="estudiante.nombres" name="nombres" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos:</label>
+            <input type="text" [(ngModel)]="estudiante.apellidos" name="apellidos" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="sexo" class="form-label">Sexo:</label>
+            <select [(ngModel)]="estudiante.sexo" name="sexo" class="form-select" required>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+
+          <!-- Agrupar las notas del parcial y recuperación una debajo de la otra -->
+          <div class="notas-group">
+            <div class="mb-3">
+              <label for="parcial1" class="form-label">Parcial 1:</label>
+              <input type="number" [(ngModel)]="estudiante.parcial1" name="parcial1" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="parcial2" class="form-label">Parcial 2:</label>
+              <input type="number" [(ngModel)]="estudiante.parcial2" name="parcial2" class="form-control" required />
+            </div>
+            <div *ngIf="estudiante.estadoAprobatorio === 'Pendiente de Recuperación'" class="mb-3">
+              <label for="recuperacion" class="form-label">Nota Recuperación:</label>
+              <input type="number" [(ngModel)]="estudiante.examenRecuperacion" name="recuperacion" class="form-control" />
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
